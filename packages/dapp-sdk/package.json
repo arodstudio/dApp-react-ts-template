@@ -1,0 +1,17 @@
+{
+    "name": "@dapp/sdk",
+    "version": "1.0.0",
+    "description": "Useful tooling for interacting with the arod.studio dapp protocol",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "scripts": {
+      "clean": "rimraf dist tsconfig.tsbuildinfo",
+      "build": "tsc -p tsconfig.json",
+      "prepare": "yarn build"
+    },
+    "devDependencies": {
+      "@dapp/contracts": "^1.0.0"
+    },
+    "peerDependencies": {
+    }
+  }

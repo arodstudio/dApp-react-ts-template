@@ -1,7 +1,8 @@
 {
-  "name": "dapp-contracts",
+  "name": "@dapp/contracts",
   "version": "1.0.0",
   "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
   "repository": "git@github.com:arodstudio/dApp-react-ts-template.git",
   "author": "arod.studio <arod.mail@proton.me>",
   "license": "MIT",
