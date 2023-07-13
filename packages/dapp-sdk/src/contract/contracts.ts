@@ -1,8 +1,16 @@
-import { LockABI, HardhatContractAddresses } from '@dapp/contracts'
+import { ERC20ABI, LockABI } from '@dapp/contracts'
+import { getContractAddressesForChainOrThrow } from './addresses'
 
-export const getLockContract = () => {
+export const getContractsDataForChainOrThrow = async (chainId: number) => {
+  const addresses = await getContractAddressesForChainOrThrow(chainId)
   return {
-    abi: LockABI,
-    address: HardhatContractAddresses.Lock,
+    Lock: {
+      abi: LockABI,
+      address: addresses.lock,
+    },
+    ERC20: {
+      abi: ERC20ABI,
+      address: addresses.ERC20Mock,
+    },
   }
 }
