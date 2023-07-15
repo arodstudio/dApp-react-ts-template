@@ -6,9 +6,9 @@ import { WagmiConfig } from 'wagmi'
 import { ChakraProvider } from '@chakra-ui/react'
 import { CacheProvider } from '@chakra-ui/next-js'
 
-import { config } from '../wagmi'
+import { config } from '../settings/wagmi'
 
-export function Providers({ children }: { children: React.ReactNode }) {
+function Providers({ children }: { children: React.ReactNode }) {
   const [mounted, setMounted] = React.useState(false)
   React.useEffect(() => setMounted(true), [])
 
@@ -22,3 +22,5 @@ export function Providers({ children }: { children: React.ReactNode }) {
     </CacheProvider>
   )
 }
+
+export default Providers
