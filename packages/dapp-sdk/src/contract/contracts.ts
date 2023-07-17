@@ -6,7 +6,7 @@ export const getContractsDataForChainOrThrow = async (chainId: number) => {
   return {
     Lock: {
       abi: LockABI,
-      address: addresses.lock,
+      address: addresses.Lock,
     },
     ERC20: {
       abi: ERC20ABI,

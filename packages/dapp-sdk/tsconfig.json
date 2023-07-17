@@ -9,7 +9,7 @@
     "incremental": true,
     "composite": true,
     "lib": ["esnext"],
-    "module": "CommonJS",
+    "module": "esnext",
     "moduleResolution": "node",
     "noImplicitThis":true,
     "outDir": "dist",

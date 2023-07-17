@@ -10,13 +10,16 @@ import { config } from '../settings/wagmi'
 
 function Providers({ children }: { children: React.ReactNode }) {
   const [mounted, setMounted] = React.useState(false)
-  React.useEffect(() => setMounted(true), [])
+  React.useEffect(() => {
+    setMounted(true)
+  }, [])
 
   return (
     <CacheProvider>
       <ChakraProvider>
         <WagmiConfig config={config}>
-          <ConnectKitProvider>{mounted && <>{children}</>}</ConnectKitProvider>
+          {!mounted && <p>Loading</p>}
+          <ConnectKitProvider>{mounted && children}</ConnectKitProvider>
         </WagmiConfig>
       </ChakraProvider>
     </CacheProvider>

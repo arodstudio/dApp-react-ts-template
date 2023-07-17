@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es6",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -15,6 +15,13 @@
     "jsx": "preserve",
     "incremental": true,
     "baseUrl": "./src",
+    "allowSyntheticDefaultImports": true,
+    "alwaysStrict": true,
+    "declaration": true,
+    "composite": true,
+    "noImplicitThis": true,
+    "outDir": "dist",
+    "strictNullChecks": true,
     "plugins": [
       {
         "name": "next"

@@ -1,8 +1,12 @@
 import fs from 'fs'
 import { TASK_COMPILE, TASK_NODE } from 'hardhat/builtin-tasks/task-names'
 import { task } from 'hardhat/config'
+import { writeLogs } from './utils/_write-logs'
 
-task('run-local', 'Start a hardhat node, deploy contracts, and execute setup transactions').setAction(async (_, { ethers, run }) => {
+task(
+  'run-local',
+  'Start a hardhat node, deploy contracts, and execute setup transactions',
+).setAction(async (_, { ethers, run }) => {
   const network = await ethers.provider.getNetwork()
   // const [deployer, DAOVault, bob, marcia] = await ethers.getSigners()
 
@@ -10,7 +14,10 @@ task('run-local', 'Start a hardhat node, deploy contracts, and execute setup tra
 
   await run(TASK_COMPILE)
 
-  await Promise.race([run(TASK_NODE, { hostname: '0.0.0.0' }), new Promise((resolve) => setTimeout(resolve, 2_000))])
+  await Promise.race([
+    run(TASK_NODE, { hostname: '0.0.0.0' }),
+    new Promise((resolve) => setTimeout(resolve, 2_000)),
+  ])
 
   const contracts = await run('deploy-local')
 
@@ -23,28 +30,18 @@ task('run-local', 'Start a hardhat node, deploy contracts, and execute setup tra
   //   }),
   // ])
 
-  console.log(`arod.studio template contracts deployed to local node at http://localhost:8545 (Chain ID: ${chainId})`)
   console.log(
-    `ERC20 Mock ($PRINTS) address: ${await contracts.ERC20Mock.instance.getAddress()}`
+    `arod.studio template contracts deployed to local node at http://localhost:8545 (Chain ID: ${chainId})`,
+  )
+  console.log(
+    `ERC20 Mock ($PRINTS) address: ${await contracts.ERC20Mock.instance.getAddress()}`,
   )
   console.log(`Lock address: ${await contracts.Lock.instance.getAddress()}`)
-  if (!fs.existsSync('logs')) {
-    fs.mkdirSync('logs')
-  }
-  fs.writeFileSync(
-    `logs/deploy-hardhat.json`,
-    JSON.stringify(
-      {
-        contractAddresses: {
-          ERC20Mock: await contracts.ERC20Mock.instance?.getAddress(),
-          Lock: await contracts.Lock.instance?.getAddress(),
-        },
-        chainId: Number(network.chainId),
-      },
-      null,
-      2
-    ),
-    { flag: 'w' }
+
+  writeLogs(
+    network.chainId,
+    await contracts.ERC20Mock.instance?.getAddress(),
+    await contracts.Lock.instance?.getAddress(),
   )
 
   // Set local node mining interval
