@@ -5,6 +5,10 @@ import { ConnectKitProvider } from 'connectkit'
 import { WagmiConfig } from 'wagmi'
 import { ChakraProvider } from '@chakra-ui/react'
 import { CacheProvider } from '@chakra-ui/next-js'
+import duration from 'dayjs/plugin/duration'
+import dayjs from 'dayjs'
+
+dayjs.extend(duration)
 
 import { config } from '../settings/wagmi'
 

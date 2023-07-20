@@ -4621,6 +4621,11 @@ bigint-crypto-utils@^3.0.23:
   resolved "https://registry.yarnpkg.com/bigint-crypto-utils/-/bigint-crypto-utils-3.3.0.tgz#72ad00ae91062cf07f2b1def9594006c279c1d77"
   integrity sha512-jOTSb+drvEDxEq6OuUybOAv/xxoh3cuYRUIPyu8sSHQNKM303UQ2R1DAo45o1AkcIXw6fzbaFI1+xGGdaXs2lg==
 
+bignumber.js@^9.1.1:
+  version "9.1.1"
+  resolved "https://registry.yarnpkg.com/bignumber.js/-/bignumber.js-9.1.1.tgz#c4df7dc496bd849d4c9464344c1aa74228b4dac6"
+  integrity sha512-pHm4LsMJ6lzgNGVfZHjMoO8sdoRhOzOH4MLmY65Jg70bpxCKu5iOHNJyfF6OyvYw7t8Fpf35RuzUyqnQsj8Vig==
+
 bin-links@^4.0.1:
   version "4.0.1"
   resolved "https://registry.npmjs.org/bin-links/-/bin-links-4.0.1.tgz"
@@ -6722,6 +6727,19 @@ ethers@^6.6.2:
   version "6.6.2"
   resolved "https://registry.yarnpkg.com/ethers/-/ethers-6.6.2.tgz#0b6131b5fa291fec69b7ae379cb6bb2405c505a7"
   integrity sha512-vyWfVAj2g7xeZIivOqlbpt7PbS2MzvJkKgsncgn4A/1xZr8Q3BznBmEBRQyPXKCgHmX4PzRQLpnYG7jl/yutMg==
+  dependencies:
+    "@adraffy/ens-normalize" "1.9.2"
+    "@noble/hashes" "1.1.2"
+    "@noble/secp256k1" "1.7.1"
+    "@types/node" "18.15.13"
+    aes-js "4.0.0-beta.5"
+    tslib "2.4.0"
+    ws "8.5.0"
+
+ethers@^6.6.4:
+  version "6.6.4"
+  resolved "https://registry.yarnpkg.com/ethers/-/ethers-6.6.4.tgz#f03a86effcd55e82aed96a2fb9a56a9febd3e3d5"
+  integrity sha512-r3myN2hEnydmu23iiIj5kjWnCh5JNzlqrE/z+Kw5UqH173F+JOWzU6qkFB4HVC50epgxzKSL2Hq1oNXA877vwQ==
   dependencies:
     "@adraffy/ens-normalize" "1.9.2"
     "@noble/hashes" "1.1.2"

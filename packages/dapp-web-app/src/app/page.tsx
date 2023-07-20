@@ -2,12 +2,12 @@
 
 import Image from 'next/image'
 import { useNetwork } from 'wagmi'
-import styles from './page.module.css'
 import { ConnectKitButton } from 'components/ConnectKitButton'
 import { Connected } from 'components/Connected'
 import { Account } from 'components/Account'
 import { Balance } from 'components/Balance'
 import { getContractsDataForChainOrThrow } from '@dapp/sdk'
+import { Box } from '@chakra-ui/react'
 
 export default function Home() {
   const { chain } = useNetwork()
@@ -17,11 +17,11 @@ export default function Home() {
     )
   }
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
+    <Box as={'main'}>
+      <div>
         <p>
           Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
+          <code>src/app/page.tsx</code>
         </p>
         <div>
           <a
@@ -33,7 +33,6 @@ export default function Home() {
             <Image
               src="/vercel.svg"
               alt="Vercel Logo"
-              className={styles.vercelLogo}
               width={100}
               height={24}
               priority
@@ -42,9 +41,8 @@ export default function Home() {
         </div>
       </div>
 
-      <div className={styles.center}>
+      <div>
         <Image
-          className={styles.logo}
           src="/next.svg"
           alt="Next.js Logo"
           width={180}
@@ -53,7 +51,7 @@ export default function Home() {
         />
       </div>
 
-      <div className={styles.grid}>
+      <div>
         <div>
           <ConnectKitButton />
 
@@ -70,7 +68,6 @@ export default function Home() {
         </div>
         <a
           href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -82,7 +79,6 @@ export default function Home() {
 
         <a
           href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -94,7 +90,6 @@ export default function Home() {
 
         <a
           href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -106,7 +101,6 @@ export default function Home() {
 
         <a
           href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -118,6 +112,6 @@ export default function Home() {
           </p>
         </a>
       </div>
-    </main>
+    </Box>
   )
 }
