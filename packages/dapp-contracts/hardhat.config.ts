@@ -1,7 +1,7 @@
 import * as dotenv from 'dotenv'
-import { HardhatUserConfig, task } from "hardhat/config";
+import { HardhatUserConfig, task } from 'hardhat/config'
 import 'dotenv/config'
-import "@nomicfoundation/hardhat-toolbox";
+import '@nomicfoundation/hardhat-toolbox'
 import 'hardhat-watcher'
 import 'hardhat-contract-sizer'
 // import 'hardhat-docgen'
@@ -26,12 +26,12 @@ task('accounts', 'Prints the list of accounts', async (taskArgs, hre) => {
 // You need to export an object to set up your config
 // Go to https://hardhat.org/config/ to learn more
 const accounts = {
-  mnemonic: process.env.MNEMONIC || 'abc abc abc abc abc abc abc abc abc abc abc abc',
+  mnemonic:
+    process.env.MNEMONIC || 'abc abc abc abc abc abc abc abc abc abc abc abc',
 }
 const config: HardhatUserConfig = {
-  defaultNetwork: 'hardhat',
   solidity: {
-    version: '0.8.18',
+    version: '0.8.19',
     settings: {
       optimizer: {
         enabled: true,
@@ -90,6 +90,6 @@ const config: HardhatUserConfig = {
   //   clear: true,
   //   runOnCompile: true,
   // },
-};
+}
 
-export default config;
+export default config
