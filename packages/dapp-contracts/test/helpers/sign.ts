@@ -1,4 +1,4 @@
-import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers'
+import { SignerWithAddress } from '@nomicfoundation/hardhat-ethers/signers'
 import { network } from 'hardhat'
 // import { BigNumber } from 'ethers'
 
@@ -45,7 +45,7 @@ const sign = async (
     chainId,
     verifyingContract: verifier,
   }
-  const signature = await signer._signTypedData(domain, types, obj)
+  const signature = await signer.signTypedData(domain, types, obj)
   return signature
 }
 

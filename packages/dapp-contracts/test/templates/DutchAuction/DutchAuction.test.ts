@@ -3,7 +3,7 @@ import { ethers } from 'hardhat'
 import { takeSnapshot, revertToSnapshot } from './../../helpers/snapshot'
 import { increaseTime } from './../../helpers/time'
 import { ZeroAddress, parseEther } from 'ethers'
-// import { formatEther, parseEther } from 'ethers/lib/utils'
+
 import {
   createMerkletree,
   getProof,
@@ -574,19 +574,19 @@ describe('DutchAuction', function () {
           const afterBobBalance = await ethers.provider.getBalance(bob.address)
 
           expect(afterAliceBalance).to.be.closeTo(
-            beforeAliceBalance + alicePaid - endAmount * 5n,
+            beforeAliceBalance + (alicePaid - endAmount) * 5n,
             parseEther('0.0001'),
           )
           expect(afterBobBalance).to.be.closeTo(
-            beforeBobBalance + bobPaid - endAmount * 3n,
+            beforeBobBalance + (bobPaid - endAmount) * 3n,
             parseEther('0.0001'),
           )
           expect(afterAliceBalance).to.be.closeTo(
-            beforeAliceBalance + alicePaid - settledPrice * 5n,
+            beforeAliceBalance + (alicePaid - settledPrice) * 5n,
             parseEther('0.0001'),
           )
           expect(afterBobBalance).to.be.closeTo(
-            beforeBobBalance + (bobPaid - settledPrice * 3n),
+            beforeBobBalance + (bobPaid - settledPrice) * 3n,
             parseEther('0.0001'),
           )
         })
@@ -611,11 +611,11 @@ describe('DutchAuction', function () {
           const afterBobBalance = await ethers.provider.getBalance(bob.address)
 
           expect(afterAliceBalance).to.be.closeTo(
-            beforeAliceBalance + (alicePaid - settledPrice * 5n),
+            beforeAliceBalance + (alicePaid - settledPrice) * 5n,
             parseEther('0.001'),
           )
           expect(afterBobBalance).to.be.closeTo(
-            beforeBobBalance + (bobPaid - settledPrice * 3n),
+            beforeBobBalance + (bobPaid - settledPrice) * 3n,
             parseEther('0.001'),
           )
         })
@@ -705,11 +705,11 @@ describe('DutchAuction', function () {
           )
           const afterBobBalance = await ethers.provider.getBalance(bob.address)
           expect(afterAliceBalance).to.be.closeTo(
-            beforeAliceBalance + (alicePaid - settledPrice * 5n),
+            beforeAliceBalance + (alicePaid - settledPrice) * 5n,
             parseEther('0.001'),
           )
           expect(afterBobBalance).to.be.closeTo(
-            beforeBobBalance + (bobPaid - endAmount * 3n),
+            beforeBobBalance + (bobPaid - endAmount) * 3n,
             parseEther('0.001'),
           )
         })
@@ -914,11 +914,11 @@ describe('DutchAuction', function () {
           const afterBobBalance = await ethers.provider.getBalance(bob.address)
 
           expect(afterAliceBalance).to.be.closeTo(
-            beforeAliceBalance + (alicePaid - settledPrice * 5n),
+            beforeAliceBalance + (alicePaid - settledPrice) * 5n,
             parseEther('0.0001'),
           )
           expect(afterBobBalance).to.be.closeTo(
-            beforeBobBalance + (bobPaid - settledPrice * 3n),
+            beforeBobBalance + (bobPaid - settledPrice) * 3n,
             parseEther('0.0001'),
           )
         })
@@ -1018,11 +1018,11 @@ describe('DutchAuction', function () {
           )
           const afterBobBalance = await ethers.provider.getBalance(bob.address)
           expect(afterAliceBalance).to.be.closeTo(
-            beforeAliceBalance + (alicePaid - settledPrice * 5n),
+            beforeAliceBalance + (alicePaid - settledPrice) * 5n,
             parseEther('0.001'),
           )
           expect(afterBobBalance).to.be.closeTo(
-            beforeBobBalance + (bobPaid - settledPrice * 3n),
+            beforeBobBalance + (bobPaid - settledPrice) * 3n,
             parseEther('0.001'),
           )
         })
@@ -1207,13 +1207,13 @@ describe('DutchAuction', function () {
       const afterBobBalance = await ethers.provider.getBalance(bob.address)
 
       expect(afterAliceBalance).to.be.closeTo(
-        beforeAliceBalance + (alicePaid - settledPriceWithDiscount * 5n),
+        beforeAliceBalance + (alicePaid - settledPriceWithDiscount) * 5n,
         parseEther('0.001'),
       )
 
       // test with refund calculation
       expect(afterBobBalance).to.be.closeTo(
-        beforeBobBalance + (bobPaid - settledPrice * 3n),
+        beforeBobBalance + (bobPaid - settledPrice) * 3n,
         parseEther('0.001'),
       )
     })
@@ -1258,16 +1258,16 @@ describe('DutchAuction', function () {
       const afterBobBalance = await ethers.provider.getBalance(bob.address)
 
       expect(afterAliceBalance).to.be.closeTo(
-        beforeAliceBalance + (alicePaid - settledPrice * 5n),
+        beforeAliceBalance + (alicePaid - settledPrice) * 5n,
         parseEther('0.001'),
       )
       expect(afterBobBalance).to.be.closeTo(
-        beforeBobBalance + (bobPaid - settledPriceWithDiscount * 3n),
+        beforeBobBalance + (bobPaid - settledPriceWithDiscount) * 3n,
         parseEther('0.001'),
       )
       expect(afterBobBalance).to.be.closeTo(
         beforeBobBalance +
-          (bobPaid - (settledPrice - ((settledPrice * 10n) / 100n) * 3n)),
+          (bobPaid - (settledPrice - (settledPrice * 10n) / 100n)) * 3n,
         parseEther('0.001'),
       )
     })
