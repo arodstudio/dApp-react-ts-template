@@ -1,4 +1,4 @@
-import { mainnet, hardhat } from '@wagmi/chains'
+import { hardhat, mainnet } from 'viem/chains'
 import { sepolia } from 'wagmi'
 
 // return chain id based on NEXT_PUBLIC_WEB3_NETWORK

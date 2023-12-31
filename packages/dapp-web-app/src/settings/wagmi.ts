@@ -26,5 +26,5 @@ export const config = createConfig(
     walletConnectProjectId,
     infuraId: process.env.NEXT_PUBLIC_PROVIDER_KEY,
     chains,
-  }),
+  })
 )
