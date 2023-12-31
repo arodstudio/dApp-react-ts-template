@@ -1,11 +1,7 @@
 import { Addressable } from 'ethers'
 import fs from 'fs'
 
-export const writeLogs = (
-  chainId: bigint,
-  ERC20Mock: Addressable,
-  Lock: Addressable,
-) => {
+export const writeLogs = (chainId: bigint, ERC20Mock: Addressable) => {
   if (!fs.existsSync('logs')) {
     fs.mkdirSync('logs')
   }
@@ -14,7 +10,6 @@ export const writeLogs = (
   const newKey = chainId.toString()
   const newValue = {
     ERC20Mock,
-    Lock,
     chainId: Number(chainId),
   }
 

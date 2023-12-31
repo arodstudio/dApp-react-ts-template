@@ -36,13 +36,8 @@ task(
   console.log(
     `ERC20 Mock ($PRINTS) address: ${await contracts.ERC20Mock.instance.getAddress()}`,
   )
-  console.log(`Lock address: ${await contracts.Lock.instance.getAddress()}`)
 
-  writeLogs(
-    network.chainId,
-    await contracts.ERC20Mock.instance?.getAddress(),
-    await contracts.Lock.instance?.getAddress(),
-  )
+  writeLogs(network.chainId, await contracts.ERC20Mock.instance?.getAddress())
 
   // Set local node mining interval
   await ethers.provider.send('evm_setIntervalMining', [12_000])

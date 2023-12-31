@@ -2,9 +2,8 @@ import { task } from 'hardhat/config'
 import { BaseContract, Contract as EthersContract } from 'ethers'
 import dayjs from 'dayjs'
 
-type LocalContractName = 'ERC20Mock' | 'Lock'
-type CombinedContract = Contract & BaseContract;
-
+type LocalContractName = 'ERC20Mock'
+type CombinedContract = Contract & BaseContract
 
 interface Contract {
   args?: (string | number | (() => string | undefined))[]
@@ -15,40 +14,50 @@ interface Contract {
 
 const lockTime = dayjs().add(1, 'minute').unix()
 
-task('deploy-local', 'Deploy contracts to hardhat').setAction(async (_, { ethers }) => {
-  const network = await ethers.provider.getNetwork()
-  if (Number(network.chainId) !== 31337) {
-    console.log(`Invalid chain id. Expected 31337. Got: ${network.chainId}.`)
-    return
-  }
-
-  const [deployer] = await ethers.getSigners()
-  await  ethers.provider.getTransactionCount(deployer.address)
-
-  const contracts: Record<LocalContractName, Contract> = {
-    ERC20Mock: {
-      args: [deployer.address, 'arod.studio Tokens', '$ARST', 1_000_000],
-    },
-    Lock: {
-      args: [lockTime],
-    },
-  }
-
-  for (const [name, contract] of Object.entries(contracts)) {
-    const factory = await ethers.getContractFactory(name, {
-      libraries: contract?.libraries?.(),
-    })
-
-    const deployedContract = await factory.deploy(...(contract.args?.map((a) => (typeof a === 'function' ? a() : a)) ?? []))
-
-    if (contract.waitForConfirmation) {
-      await deployedContract.waitForDeployment()
+task('deploy-local', 'Deploy contracts to hardhat').setAction(
+  async (_, { ethers }) => {
+    const network = await ethers.provider.getNetwork()
+    if (Number(network.chainId) !== 31337) {
+      console.log(`Invalid chain id. Expected 31337. Got: ${network.chainId}.`)
+      return
     }
-    
-    contracts[name as LocalContractName].instance = deployedContract
 
-    console.log(`${name} contract deployed to ${await deployedContract.getAddress()}`)
-  }
+    const [deployer] = await ethers.getSigners()
+    await ethers.provider.getTransactionCount(deployer.address)
 
-  return contracts
-})
+    const contracts: Record<LocalContractName, Contract> = {
+      ERC20Mock: {
+        args: [deployer.address, 'arod.studio Tokens', '$ARST', 1_000_000],
+      },
+      /** TEMPLATE 
+       * Copy and paste the following code to deploy a new contract locally.
+          ContractName: {
+            args: [Arg1, Arg2, ...],
+          },
+      */
+    }
+
+    for (const [name, contract] of Object.entries(contracts)) {
+      const factory = await ethers.getContractFactory(name, {
+        libraries: contract?.libraries?.(),
+      })
+
+      const deployedContract = await factory.deploy(
+        ...(contract.args?.map((a) => (typeof a === 'function' ? a() : a)) ??
+          []),
+      )
+
+      if (contract.waitForConfirmation) {
+        await deployedContract.waitForDeployment()
+      }
+
+      contracts[name as LocalContractName].instance = deployedContract
+
+      console.log(
+        `${name} contract deployed to ${await deployedContract.getAddress()}`,
+      )
+    }
+
+    return contracts
+  },
+)
