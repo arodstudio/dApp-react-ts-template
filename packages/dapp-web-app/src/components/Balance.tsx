@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import type { Address } from 'wagmi'
+import { Address } from 'viem'
 import { useAccount, useBalance } from 'wagmi'
 
 export function Balance() {
@@ -22,7 +22,6 @@ export function AccountBalance() {
   const { address } = useAccount()
   const { data, refetch } = useBalance({
     address,
-    watch: true,
   })
 
   return (

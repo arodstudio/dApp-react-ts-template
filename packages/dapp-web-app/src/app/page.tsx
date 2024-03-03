@@ -1,21 +1,13 @@
 'use client'
 
 import Image from 'next/image'
-import { useNetwork } from 'wagmi'
-import { ConnectKitButton } from 'components/ConnectKitButton'
+// import { ConnectKitButton } from 'components/ConnectKitButton'
 import { Connected } from 'components/Connected'
 import { Account } from 'components/Account'
 import { Balance } from 'components/Balance'
-import { getContractsDataForChainOrThrow } from '@dapp/sdk'
 import { Box } from '@chakra-ui/react'
 
 export default function Home() {
-  const { chain } = useNetwork()
-  if (chain?.id) {
-    getContractsDataForChainOrThrow(chain?.id).then((a) =>
-      console.log('log', a),
-    )
-  }
   return (
     <Box as={'main'}>
       <div>
@@ -53,7 +45,7 @@ export default function Home() {
 
       <div>
         <div>
-          <ConnectKitButton />
+          {/* <ConnectKitButton /> */}
 
           <Connected>
             <h2>Account</h2>

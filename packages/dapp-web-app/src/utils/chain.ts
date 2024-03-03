@@ -1,5 +1,4 @@
-import { hardhat, mainnet } from 'viem/chains'
-import { sepolia } from 'wagmi'
+import { hardhat, mainnet, sepolia } from 'viem/chains'
 
 // return chain id based on NEXT_PUBLIC_WEB3_NETWORK
 export const getChainId = () => {

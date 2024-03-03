@@ -2,7 +2,6 @@ import { LockFactory } from '@dapp/contracts'
 
 export interface ContractAddress {
   ERC20Mock: string
-  Lock: string
   chainId: number
 }
 
